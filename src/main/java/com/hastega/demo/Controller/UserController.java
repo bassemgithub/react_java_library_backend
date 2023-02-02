@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hastega.demo.Model.User;
@@ -25,4 +29,12 @@ public class UserController {
 		model.addAttribute("users", users);
 		return users;
 	}
+	
+	@CrossOrigin
+	@PostMapping("/user")
+	public void save(@RequestBody User user){
+		userService.save(user);
+    }
+	
+	
 }

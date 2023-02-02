@@ -23,16 +23,16 @@ public class Book implements Serializable {
 	
 	
 	@Column(nullable = false, length = 20)
-	private String titolo;
+	private String title;
 	
 	@Column(nullable = false, length = 20)
-	private String autore;
+	private String author;
 	
 	@Column(nullable = false, length = 20)
 	private String isbn;
 	
 	@Column(nullable = false, length = 20)
-	private String trama;
+	private String plot;
 	
 	@Column(name = "create_date")
 	private Date createDate;
@@ -45,6 +45,7 @@ public class Book implements Serializable {
 	
 	@JsonIgnore
 	@ManyToOne
+	//@JoinColumn(name = "user_id", nullable = false)
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -56,20 +57,20 @@ public class Book implements Serializable {
 		this.id = id;
 	}
 
-	public String getTitolo() {
-		return titolo;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getAutore() {
-		return autore;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setAutore(String autore) {
-		this.autore = autore;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getIsbn() {
@@ -80,12 +81,12 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 
-	public String getTrama() {
-		return trama;
+	public String getPlot() {
+		return plot;
 	}
 
-	public void setTrama(String trama) {
-		this.trama = trama;
+	public void setPlot(String plot) {
+		this.plot = plot;
 	}
 
 	public Date getCreateDate() {
@@ -119,6 +120,7 @@ public class Book implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	
 	
 	
