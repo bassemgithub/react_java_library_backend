@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Book implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private long id;
 	
 	
@@ -28,25 +28,23 @@ public class Book implements Serializable {
 	@Column(nullable = false, length = 20)
 	private String author;
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, unique = true, length = 20)
 	private String isbn;
 	
 	@Column(nullable = false, length = 20)
 	private String plot;
 	
-	@Column(name = "create_date")
-	private Date createDate;
+	private Date createDate = new Date(System.currentTimeMillis());
 	
-	@Column(name = "delete_date")
+	@Column(nullable = true)
 	private Date deleteDate;
 	
 	@Column(name = "page_number")
 	private int pageNumber;
 	
 	@JsonIgnore
-	@ManyToOne
-	//@JoinColumn(name = "user_id", nullable = false)
-	@JoinColumn(name = "user_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName= "id")
 	private User user;
 
 	public long getId() {
@@ -119,6 +117,11 @@ public class Book implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public void assignUser(User user) {
+		this.user = user;
+		
 	}
 
 	

@@ -26,7 +26,7 @@ import lombok.Data;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private long id;
 
 	@Column(nullable = false, length = 20)
@@ -38,8 +38,17 @@ public class User {
 	@Column(nullable = false, length = 20)
 	private String email;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Book> books;
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 	public long getId() {
 		return id;
