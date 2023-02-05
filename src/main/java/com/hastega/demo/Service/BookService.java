@@ -31,23 +31,33 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 
-	public List<Book> findByUserId(Integer user_id) {
+	public List<Book> findByUserId(Integer user_id) {	
 		//return bookRepository.findByUserId(user_id);
 		return bookRepository.findByUserIdAndDelteDate(user_id);
 		
 	}
 	
+	public Optional<Book> findByBookId(Long book_id) {
+		return bookRepository.findById(book_id);
+		
+	}
+	
 	// add a book for a foregien Key user
-	public void save(Long userId, Book book) {
+	public Book save(Long userId, Book book) {
 		User user = userRepository.findById(userId).get();
 		book.assignUser(user);
-		bookRepository.save(book);
+		//bookRepository.save(book);
+		 Book myBook = bookRepository.saveAndFlush(book);
+		
+		return myBook;
+		 
 	}
 
 	public void delete(Long id) {
 		bookRepository.deleteById(id);
 	}
 	
+	// update a the delete date in order to delete book from book list
 	public void pathcDeleteDate(Long id) {
 		Book book = bookRepository.findById(id).orElse(null);
 		book.setDeleteDate(new Date(System.currentTimeMillis()));
@@ -61,6 +71,18 @@ public class BookService {
 		book.setPageNumber(pagenumber);
 		
 		bookRepository.save(book);
+	}
+
+	public void editBookInfo(Long id, Book book) {
+		Book current  = bookRepository.findById(id).orElse(null);
+		current.setAuthor(book.getAuthor());
+		current.setCreateDate(new Date(System.currentTimeMillis()));
+		current.setIsbn(book.getIsbn());
+		current.setPageNumber(book.getPageNumber());
+		current.setPlot(book.getPlot());
+		current.setTitle(book.getTitle());
+		bookRepository.save(current);
+		
 	}
 
 

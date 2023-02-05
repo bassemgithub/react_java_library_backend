@@ -2,6 +2,9 @@ package com.hastega.demo.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.validation.constraints.Size;
+
 import jakarta.persistence.*;
 /*import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +31,8 @@ public class Book implements Serializable {
 	@Column(nullable = false, length = 20)
 	private String author;
 	
-	@Column(nullable = false, unique = true, length = 20)
+	@Column(nullable = false, length = 20)
+	@Size(min = 13, max = 13)
 	private String isbn;
 	
 	@Column(nullable = false, length = 20)

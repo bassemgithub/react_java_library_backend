@@ -35,7 +35,7 @@ public class User {
 	@Column(nullable = false, length = 20)
 	private String surname;
 
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 20 ,unique = true)
 	private String email;
 
 	@JsonIgnore
