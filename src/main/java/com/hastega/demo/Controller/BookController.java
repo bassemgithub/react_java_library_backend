@@ -26,10 +26,10 @@ import com.hastega.demo.Service.BookService;
 
 @CrossOrigin(origins ="http://localhost:3000")
 @RestController
+@RequiredArgsConstructor
 public class BookController {
 
-	@Autowired
-	BookService bookService;
+	private final BookService bookService;
 
 	@CrossOrigin
 	@GetMapping("/books")
