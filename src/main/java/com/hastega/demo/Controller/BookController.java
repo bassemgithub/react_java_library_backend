@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hastega.demo.Model.Book;
 import com.hastega.demo.Service.BookService;
 
+import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins ="http://localhost:3000")
 @RestController
